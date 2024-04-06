@@ -2,6 +2,7 @@ package com.project.HelloWorld.ServicesImp;
 
 import com.project.HelloWorld.Entities.HelloEntity;
 import com.project.HelloWorld.Repositories.HelloRepository;
+import com.project.HelloWorld.Services.HelloService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,37 +19,33 @@ public class HelloServiceImpTest {
     @Mock
     private HelloRepository helloRepository;
 
-    @InjectMocks
-    private HelloServiceImp helloService;
+    private HelloService helloService;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+        helloService = new HelloServiceImp(helloRepository);
     }
 
     @Test
     public void testGetHelloMessage() {
-        // Arrange
+
         HelloEntity mockHelloEntity = new HelloEntity();
         mockHelloEntity.setMessage("Hello world");
         when(helloRepository.findById(1L)).thenReturn(Optional.of(mockHelloEntity));
 
-        // Act
         String helloMessage = helloService.getHelloMessage();
 
-        // Assert
         assertEquals("Hello world", helloMessage);
     }
 
     @Test
     public void testGetHelloMessageWhenNotFound() {
-        // Arrange
+
         when(helloRepository.findById(1L)).thenReturn(Optional.empty());
 
-        // Act
         String helloMessage = helloService.getHelloMessage();
 
-        // Assert
         assertEquals("error", helloMessage);
     }
 }

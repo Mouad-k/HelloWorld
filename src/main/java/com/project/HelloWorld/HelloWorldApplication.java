@@ -12,9 +12,5 @@ public class HelloWorldApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HelloWorldApplication.class, args);
 	}
-/*@Bean
-	public String test (DataSource datasource){
-	System.out.println(datasource.toString());
-	return datasource.toString();
-}*/
+
 }

@@ -11,7 +11,7 @@ public class HelloServiceImp implements HelloService {
 
     private final HelloRepository helloRepository;
 
-    @Autowired
+
     public HelloServiceImp(HelloRepository helloRepository) {
         this.helloRepository = helloRepository;
     }
